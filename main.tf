@@ -51,6 +51,7 @@ module "bootstrap" {
   nonlive = local.nonlive
   live    = local.live
 
+  aws_region      = local.aws_region
   api_subdomain   = local.api_subdomain
   serverless_apis = local.serverless_apis
 }
