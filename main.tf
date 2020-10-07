@@ -40,9 +40,17 @@ locals {
   contributors = ["cnuss"]
 }
 
-# module "bootstrap" {
-#   source = "../terraform-scaffoldly-bootstrap"
+module "bootstrap" {
+  source = "github.com/scaffoldly/terraform-scaffoldly-bootstrap"
 
-#   organization = data.external.git.result.organization
-#   github_token = var.BOOTSTRAP_GITHUB_TOKEN
-# }
+  root_email   = var.ROOT_EMAIL
+  github_token = var.BOOTSTRAP_GITHUB_TOKEN
+  organization = data.external.git.result.organization
+
+  stages  = local.stages
+  nonlive = local.nonlive
+  live    = local.live
+
+  api_subdomain   = local.api_subdomain
+  serverless_apis = local.serverless_apis
+}
