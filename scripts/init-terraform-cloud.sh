@@ -6,6 +6,8 @@ export EMAIL="$1"
 export TOKEN="$2"
 export ORG_NAME="$3"
 
+# TODO FAIL CURLS
+
 curl  --request POST 'https://app.terraform.io/api/v2/organizations' \
       --header 'Authorization: Bearer '${TOKEN}'' \
       --header 'Content-Type: application/vnd.api+json' \

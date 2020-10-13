@@ -62,7 +62,7 @@ jobs:
           git config user.email "gh-action-bump-version@users.noreply.github.com"
       - uses: hashicorp/setup-terraform@v1
       - run: |
-          export ORGANIZATION="$(./misc/git.sh | jq -r .organization)"
+          export ORGANIZATION="$(./scripts/git.sh | jq -r .organization)"
           terraform init -backend-config="hostname=app.terraform.io" -backend-config="organization=$ORGANIZATION" -backend-config="token=$BOOTSTRAP_TERRAFORM_TOKEN"
       - uses: dsaltares/fetch-gh-release-asset@0.0.4
         with:
