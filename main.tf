@@ -10,16 +10,16 @@ terraform {
 locals {
   aws_region = "us-east-1"
 
-  api_subdomain = "api"
+  stages = {
+    nonlive = {
+      domain                   = "scaffoldly.dev"
+      serverless_api_subdomain = "sls"
+    }
 
-  stages = ["nonlive", "live"]
-
-  nonlive = {
-    domain = "scaffoldly.dev"
-  }
-
-  live = {
-    domain = "scaffoldly.com"
+    live = {
+      domain                   = "scaffoldly.com"
+      serverless_api_subdomain = "sls"
+    }
   }
 
   static_websites = {

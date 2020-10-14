@@ -68,7 +68,7 @@ jobs:
         with:
           version: latest
           file: planfile.gpg
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BOOTSTRAP_GITHUB_TOKEN }}
       - run: gpg --batch -d --passphrase "$BOOTSTRAP_GITHUB_TOKEN" -o planfile planfile.gpg
       - run: terraform apply -no-color planfile
         id: apply
