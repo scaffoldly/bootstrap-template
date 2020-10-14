@@ -19,7 +19,7 @@ locals {
   }
 
   live = {
-    domain = "scaffold.ly"
+    domain = "scaffoldly.com"
   }
 
   static_websites = {
