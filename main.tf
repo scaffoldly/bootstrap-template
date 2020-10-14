@@ -55,4 +55,3 @@ module "bootstrap" {
   api_subdomain   = local.api_subdomain
   serverless_apis = local.serverless_apis
 }
-
