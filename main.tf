@@ -12,31 +12,47 @@ locals {
 
   stages = {
     nonlive = {
-      domain                   = "scaffoldly.dev"
-      serverless_api_subdomain = "sls"
+      # change these to suit your own preferences
+      # you can also use a completely separate domain you own
+      domain                   = "mydomain.com"
+      serverless_api_subdomain = "sls-dev" # sls == 'serverless', you could also simply call this "api"
     }
 
     live = {
-      domain                   = "scaffoldly.com"
+      # change these to suit your own preferences
+      domain                   = "mydomain.com"
       serverless_api_subdomain = "sls"
     }
   }
 
+  # TODO: Not yet supported
   static_websites = {
-    example = {
-      subdomain = "example" # TODO Support missing or empty string
-    }
+    mywebsite = {}
   }
 
   serverless_apis = {
-    example = {
+    # Update 'myservice1' to be the desired name of your service
+    # add as many microservices as you like!
+    myservice1 = {
+      # TODO: Custom permissions not yet supported
       aws_services = {
         produces = ["dynamodb"]
       }
-      cors = "*" # Todo Support missing or empty string
+      # TODO: CORS customization not yet supported
+      cors = "*"
+    }
+
+    myservice2 = {
+      # TODO: Custom permissions not yet supported
+      aws_services = {
+        produces = ["dynamodb"]
+      }
+      # TODO: CORS customization not yet supported
+      cors = "*"
     }
   }
 
+  # TODO: Adding contributors not yet supported
   contributors = ["cnuss"]
 }
 
