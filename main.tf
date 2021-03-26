@@ -11,7 +11,7 @@ terraform {
 
 module "bootstrap" {
   source  = "scaffoldly/bootstrap/scaffoldly"
-  version = "0.14.32"
+  version = "0.14.33"
 
   root_email   = var.ROOT_EMAIL
   github_token = var.BOOTSTRAP_GITHUB_TOKEN
@@ -30,20 +30,20 @@ module "bootstrap" {
     }
   }
 
-  public_websites = {
-    app = {
-      # URL will be: https://app-dev.myproject.com and https://app.myproject.com
-      template = "scaffoldly/web-angular-template"
-    }
-    # Add as many websites as you like...
-  }
-
   serverless_apis = {
     service1 = {
       # URL will be: https://sly-dev.myproject.com/service1 and https://sly.myproject.com/service1
       template = "scaffoldly/sls-rest-api-template"
     }
     # Add as many services as you like...
+  }
+
+  public_websites = {
+    app = {
+      # URL will be: https://app-dev.myproject.com and https://app.myproject.com
+      template = "scaffoldly/web-angular-template"
+    }
+    # Add as many websites as you like...
   }
 
   shared_env_vars = {
