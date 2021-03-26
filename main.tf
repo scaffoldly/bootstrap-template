@@ -1,74 +1,52 @@
 terraform {
-  required_version = ">= 0.13"
+  required_version = ">= 0.14"
+  experiments      = [module_variable_optional_attrs]
+
   backend "remote" {
     workspaces {
-      name = "bootstrap"
+      name = "scaffoldly-bootstrap"
     }
   }
-}
-
-locals {
-  aws_region = "us-east-1"
-
-  stages = {
-    nonlive = {
-      # change these to suit your own preferences
-      # you can also use a completely separate domain you own
-      domain                   = "mydomain.com"
-      serverless_api_subdomain = "sls-dev" # sls == 'serverless', you could also simply call this "api"
-    }
-
-    live = {
-      # change these to suit your own preferences
-      domain                   = "mydomain.com"
-      serverless_api_subdomain = "sls"
-    }
-  }
-
-  # TODO: Not yet supported
-  static_websites = {
-    mywebsite = {}
-  }
-
-  serverless_apis = {
-    # Update 'myservice1' to be the desired name of your service
-    # add as many microservices as you like!
-    myservice1 = {
-      # TODO: Custom permissions not yet supported
-      aws_services = {
-        produces = ["dynamodb"]
-      }
-      # TODO: CORS customization not yet supported
-      cors = "*"
-    }
-
-    myservice2 = {
-      # TODO: Custom permissions not yet supported
-      aws_services = {
-        produces = ["dynamodb"]
-      }
-      # TODO: CORS customization not yet supported
-      cors = "*"
-    }
-  }
-
-  # TODO: Adding contributors not yet supported
-  contributors = ["cnuss"]
 }
 
 module "bootstrap" {
-  source = "github.com/scaffoldly/terraform-scaffoldly-bootstrap"
+  source  = "scaffoldly/bootstrap/scaffoldly"
+  version = "0.14.32"
 
   root_email   = var.ROOT_EMAIL
   github_token = var.BOOTSTRAP_GITHUB_TOKEN
   organization = data.external.git.result.organization
 
-  stages  = local.stages
-  nonlive = local.nonlive
-  live    = local.live
+  # For the various configurations of this:
+  # https://docs.scaffold.ly/infrastructure/configuration-files/stages
+  stages = {
+    nonlive = {
+      domain           = "myproject.com"
+      subdomain_suffix = "dev"
+    }
 
-  aws_region      = local.aws_region
-  api_subdomain   = local.api_subdomain
-  serverless_apis = local.serverless_apis
+    live = {
+      domain = "myproject.com"
+    }
+  }
+
+  public_websites = {
+    app = {
+      # URL will be: https://app-dev.myproject.com and https://app.myproject.com
+      template = "scaffoldly/web-angular-template"
+    }
+    # Add as many websites as you like...
+  }
+
+  serverless_apis = {
+    service1 = {
+      # URL will be: https://sly-dev.myproject.com/service1 and https://sly.myproject.com/service1
+      template = "scaffoldly/sls-rest-api-template"
+    }
+    # Add as many services as you like...
+  }
+
+  shared_env_vars = {
+    "ENV_VAR_1" = "EnvVar1Value"
+  }
 }
-

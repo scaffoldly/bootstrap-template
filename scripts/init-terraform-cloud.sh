@@ -28,7 +28,7 @@ curl  --request POST 'https://app.terraform.io/api/v2/organizations/'$ORG_NAME'/
                     "data": {
                       "type": "workspaces",
                       "attributes": {
-                        "name": "bootstrap",
+                        "name": "scaffoldly-bootstrap",
                         "operations": false
                       }
                     }
