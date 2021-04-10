@@ -11,7 +11,7 @@ terraform {
 
 module "bootstrap" {
   source  = "scaffoldly/bootstrap/scaffoldly"
-  version = "0.14.53"
+  version = "0.14.55"
 
   root_email   = var.ROOT_EMAIL
   github_token = var.BOOTSTRAP_GITHUB_TOKEN
@@ -21,11 +21,13 @@ module "bootstrap" {
 
   stages = {
     nonlive = {
-      domain = "smartnuss.dev"
+      domain = "myproject.dev"
+      # or to suffix nonlive subdomains with '-dev.myproject.com'
+      # domain = "myproject.com"
+      # subdomain_suffix = "dev"
     }
-
     live = {
-      domain = "smartnuss.com"
+      domain = "myproject.com"
     }
   }
 }
