@@ -1,0 +1,26 @@
+name: Run a shell command
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: "The shell command to run"
+        required: true
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.BOOTSTRAP_AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.BOOTSTRAP_AWS_SECRET_ACCESS_KEY }}
+  TF_VAR_ROOT_EMAIL: ${{ secrets.BOOTSTRAP_ROOT_EMAIL }}
+  TF_VAR_BOOTSTRAP_GITHUB_TOKEN: ${{ secrets.BOOTSTRAP_GITHUB_TOKEN }}
+jobs:
+  shell:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hashicorp/setup-terraform@v1
+      - uses: scaffoldly/bootstrap-action@main
+        with:
+          action: sh
+          command: ${{ github.event.inputs.command }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          root-email: ${{ secrets.BOOTSTRAP_ROOT_EMAIL }}
+          terraform-cloud-token: ${{ secrets.BOOTSTRAP_TERRAFORM_TOKEN }}

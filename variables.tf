@@ -8,3 +8,7 @@ variable "BOOTSTRAP_GITHUB_TOKEN" {
   description = "GitHub Token"
 }
 
+variable "BOOTSTRAP_ORGANIZATION" {
+  type        = string
+  description = "GitHub/Terraform Cloud Organization"
+}
