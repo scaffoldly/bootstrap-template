@@ -12,6 +12,7 @@ env:
 jobs:
   plan:
     runs-on: ubuntu-latest
+    if: "!startsWith(github.event.head_commit.message, 'Initial commit')"
     steps:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1
