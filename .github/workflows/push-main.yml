@@ -2,7 +2,7 @@ name: Create Release and Execute Plan
 on:
   workflow_dispatch:
   push:
-    branches: [master, main]
+    branches: [main]
 
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.BOOTSTRAP_AWS_ACCESS_KEY_ID }}
