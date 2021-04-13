@@ -11,13 +11,11 @@ terraform {
 
 module "bootstrap" {
   source  = "scaffoldly/bootstrap/scaffoldly"
-  version = "0.14.60"
+  version = "0.14.61"
 
   root_email   = var.ROOT_EMAIL
   github_token = var.BOOTSTRAP_GITHUB_TOKEN
   organization = var.BOOTSTRAP_ORGANIZATION
-
-  auth_service = true
 
   stages = {
     nonlive = {
