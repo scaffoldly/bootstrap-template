@@ -17,6 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 0.14.10
       - uses: scaffoldly/bootstrap-action@v1.0.67
         with:
           action: sh
