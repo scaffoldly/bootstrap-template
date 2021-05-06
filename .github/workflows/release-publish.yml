@@ -2,7 +2,6 @@ name: Execute Apply from Published Release
 on:
   release:
     types: [published]
-
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.BOOTSTRAP_AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.BOOTSTRAP_AWS_SECRET_ACCESS_KEY }}
@@ -16,7 +15,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.15.0
-      - uses: scaffoldly/bootstrap-action@v1.0.67
+      - uses: scaffoldly/bootstrap-action@1.0.68
         with:
           action: apply
           repo-token: ${{ secrets.GITHUB_TOKEN }}

@@ -18,7 +18,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 0.15.0
-      - uses: scaffoldly/bootstrap-action@v1.0.67
+      - uses: scaffoldly/bootstrap-action@1.0.68
         with:
           action: plan
           repo-token: ${{ secrets.GITHUB_TOKEN }}
